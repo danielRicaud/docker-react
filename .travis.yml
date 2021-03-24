@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t dricaud/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true dricaud/docker-react npm run test -- --coverage
